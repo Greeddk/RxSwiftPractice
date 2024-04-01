@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class TableViewController: UIViewController {
+final class TableViewController: UIViewController {
     
     let tableView = UITableView()
     
