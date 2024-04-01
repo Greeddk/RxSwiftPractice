@@ -16,6 +16,7 @@
 		42429DBD2BBAC2E90077923B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 42429DBC2BBAC2E90077923B /* RxCocoa */; };
 		42429DBF2BBAC2E90077923B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 42429DBE2BBAC2E90077923B /* RxSwift */; };
 		42429DC12BBAC8B40077923B /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42429DC02BBAC8B40077923B /* PickerViewController.swift */; };
+		42429DC32BBACED10077923B /* SumNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42429DC22BBACED10077923B /* SumNumberViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		42429DB02BBAC28A0077923B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42429DB22BBAC28A0077923B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42429DC02BBAC8B40077923B /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		42429DC22BBACED10077923B /* SumNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumNumberViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +66,12 @@
 			children = (
 				42429DA42BBAC2890077923B /* AppDelegate.swift */,
 				42429DA62BBAC2890077923B /* SceneDelegate.swift */,
-				42429DA82BBAC2890077923B /* TableViewController.swift */,
 				42429DAD2BBAC28A0077923B /* Assets.xcassets */,
 				42429DAF2BBAC28A0077923B /* LaunchScreen.storyboard */,
 				42429DB22BBAC28A0077923B /* Info.plist */,
 				42429DC02BBAC8B40077923B /* PickerViewController.swift */,
+				42429DA82BBAC2890077923B /* TableViewController.swift */,
+				42429DC22BBACED10077923B /* SumNumberViewController.swift */,
 			);
 			path = RxPractice;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 				42429DA92BBAC2890077923B /* TableViewController.swift in Sources */,
 				42429DA52BBAC2890077923B /* AppDelegate.swift in Sources */,
 				42429DC12BBAC8B40077923B /* PickerViewController.swift in Sources */,
+				42429DC32BBACED10077923B /* SumNumberViewController.swift in Sources */,
 				42429DA72BBAC2890077923B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

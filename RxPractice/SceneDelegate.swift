@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
-        window?.rootViewController = PickerViewController()
+        window?.rootViewController = SumNumberViewController()
         window?.makeKeyAndVisible()
     }
 
