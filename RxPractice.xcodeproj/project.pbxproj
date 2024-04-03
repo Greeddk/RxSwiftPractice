@@ -19,6 +19,10 @@
 		42429DC32BBACED10077923B /* SumNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42429DC22BBACED10077923B /* SumNumberViewController.swift */; };
 		42429DC62BBBF1E80077923B /* SimpleValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42429DC52BBBF1E80077923B /* SimpleValidationViewController.swift */; };
 		42429DC82BBC0A210077923B /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42429DC72BBC0A210077923B /* PasswordViewController.swift */; };
+		42D67FD62BBD84FA0087B90C /* PhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D67FD52BBD84FA0087B90C /* PhoneViewController.swift */; };
+		42D67FD92BBD855C0087B90C /* SignTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D67FD82BBD855C0087B90C /* SignTextView.swift */; };
+		42D67FDB2BBD858E0087B90C /* PointButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D67FDA2BBD858E0087B90C /* PointButton.swift */; };
+		42D67FDD2BBD86980087B90C /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D67FDC2BBD86980087B90C /* PhoneViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,10 @@
 		42429DC22BBACED10077923B /* SumNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumNumberViewController.swift; sourceTree = "<group>"; };
 		42429DC52BBBF1E80077923B /* SimpleValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewController.swift; sourceTree = "<group>"; };
 		42429DC72BBC0A210077923B /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		42D67FD52BBD84FA0087B90C /* PhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewController.swift; sourceTree = "<group>"; };
+		42D67FD82BBD855C0087B90C /* SignTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignTextView.swift; sourceTree = "<group>"; };
+		42D67FDA2BBD858E0087B90C /* PointButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointButton.swift; sourceTree = "<group>"; };
+		42D67FDC2BBD86980087B90C /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +60,6 @@
 		42429D982BBAC2890077923B = {
 			isa = PBXGroup;
 			children = (
-				42429DC72BBC0A210077923B /* PasswordViewController.swift */,
 				42429DA32BBAC2890077923B /* RxPractice */,
 				42429DA22BBAC2890077923B /* Products */,
 			);
@@ -69,6 +76,7 @@
 		42429DA32BBAC2890077923B /* RxPractice */ = {
 			isa = PBXGroup;
 			children = (
+				42D67FD72BBD85520087B90C /* CustomView */,
 				42429DA42BBAC2890077923B /* AppDelegate.swift */,
 				42429DA62BBAC2890077923B /* SceneDelegate.swift */,
 				42429DAD2BBAC28A0077923B /* Assets.xcassets */,
@@ -78,8 +86,20 @@
 				42429DA82BBAC2890077923B /* TableViewController.swift */,
 				42429DC22BBACED10077923B /* SumNumberViewController.swift */,
 				42429DC52BBBF1E80077923B /* SimpleValidationViewController.swift */,
+				42429DC72BBC0A210077923B /* PasswordViewController.swift */,
+				42D67FD52BBD84FA0087B90C /* PhoneViewController.swift */,
+				42D67FDC2BBD86980087B90C /* PhoneViewModel.swift */,
 			);
 			path = RxPractice;
+			sourceTree = "<group>";
+		};
+		42D67FD72BBD85520087B90C /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				42D67FD82BBD855C0087B90C /* SignTextView.swift */,
+				42D67FDA2BBD858E0087B90C /* PointButton.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +185,11 @@
 				42429DA52BBAC2890077923B /* AppDelegate.swift in Sources */,
 				42429DC12BBAC8B40077923B /* PickerViewController.swift in Sources */,
 				42429DC82BBC0A210077923B /* PasswordViewController.swift in Sources */,
+				42D67FDB2BBD858E0087B90C /* PointButton.swift in Sources */,
 				42429DC32BBACED10077923B /* SumNumberViewController.swift in Sources */,
+				42D67FDD2BBD86980087B90C /* PhoneViewModel.swift in Sources */,
+				42D67FD62BBD84FA0087B90C /* PhoneViewController.swift in Sources */,
+				42D67FD92BBD855C0087B90C /* SignTextView.swift in Sources */,
 				42429DA72BBAC2890077923B /* SceneDelegate.swift in Sources */,
 				42429DC62BBBF1E80077923B /* SimpleValidationViewController.swift in Sources */,
 			);
