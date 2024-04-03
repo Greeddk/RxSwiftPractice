@@ -18,6 +18,7 @@
 		42429DC12BBAC8B40077923B /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42429DC02BBAC8B40077923B /* PickerViewController.swift */; };
 		42429DC32BBACED10077923B /* SumNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42429DC22BBACED10077923B /* SumNumberViewController.swift */; };
 		42429DC62BBBF1E80077923B /* SimpleValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42429DC52BBBF1E80077923B /* SimpleValidationViewController.swift */; };
+		42429DC82BBC0A210077923B /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42429DC72BBC0A210077923B /* PasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		42429DC02BBAC8B40077923B /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		42429DC22BBACED10077923B /* SumNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumNumberViewController.swift; sourceTree = "<group>"; };
 		42429DC52BBBF1E80077923B /* SimpleValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewController.swift; sourceTree = "<group>"; };
+		42429DC72BBC0A210077923B /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 		42429D982BBAC2890077923B = {
 			isa = PBXGroup;
 			children = (
+				42429DC72BBC0A210077923B /* PasswordViewController.swift */,
 				42429DA32BBAC2890077923B /* RxPractice */,
 				42429DA22BBAC2890077923B /* Products */,
 			);
@@ -161,6 +164,7 @@
 				42429DA92BBAC2890077923B /* TableViewController.swift in Sources */,
 				42429DA52BBAC2890077923B /* AppDelegate.swift in Sources */,
 				42429DC12BBAC8B40077923B /* PickerViewController.swift in Sources */,
+				42429DC82BBC0A210077923B /* PasswordViewController.swift in Sources */,
 				42429DC32BBACED10077923B /* SumNumberViewController.swift in Sources */,
 				42429DA72BBAC2890077923B /* SceneDelegate.swift in Sources */,
 				42429DC62BBBF1E80077923B /* SimpleValidationViewController.swift in Sources */,
