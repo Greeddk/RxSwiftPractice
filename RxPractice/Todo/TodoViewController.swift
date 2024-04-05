@@ -45,7 +45,18 @@ class TodoViewController: UIViewController {
     
     func bind() {
         
-        let input = TodoViewModel.Input(todoTitle: textField.rx.text, addButtonTap: addButton.rx.tap, nextPageButtonTap: nextPageButton.rx.tap)
+        let changeItemName = PublishRelay<(text: String, indexPath: Int)>()
+        let checkButtonTap = PublishRelay<Int>()
+        let favoriteButtonTap = PublishRelay<Int>()
+        let itemDelete = PublishRelay<Int>()
+        
+        let input = TodoViewModel.Input(todoTitle: textField.rx.text.orEmpty,
+                                        addButtonTap: addButton.rx.tap,
+                                        nextPageButtonTap: nextPageButton.rx.tap,
+                                        changeItemName: changeItemName,
+                                        checkButtonTap: checkButtonTap,
+                                        favoriteButtonTap: favoriteButtonTap,
+                                        itemDelete: itemDelete)
         
         let output = viewModel.transform(input: input)
         
@@ -53,30 +64,34 @@ class TodoViewController: UIViewController {
             .drive(textField.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel.items
+        output.addButtonTap
+            .bind(with: self) { owner, _ in
+                owner.textField.text = ""
+            }
+            .disposed(by: disposeBag)
+        
+        output.nextPageButtonTap
+            .bind(with: self) { owner, _ in
+                print("page이동")
+            }
+            .disposed(by: disposeBag)
+        
+        output.todoItems
             .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: TodoTableViewCell.self)) { (row, element, cell) in
                 
                 cell.title.text = element.title
                 cell.changeDone(done: element.done)
                 cell.changeFavorite(isFavorite: element.isFavorite)
-//                cell.checkButton.rx.tap.subscribe(with: self) { owner, _ in
-//                    owner.viewModel.filteredData[row].done.toggle()
-//                    let index = owner.viewModel.data.firstIndex { todo in
-//                        todo.id == owner.viewModel.filteredData[row].id
-//                    } ?? 0
-//                    owner.viewModel.data[index].done.toggle()
-//                    owner.items.onNext(owner.viewModel.filteredData)
-//                }
-//                .disposed(by: cell.disposeBag)
-//                cell.favoriteButton.rx.tap.subscribe(with: self) { owner, _ in
-//                    owner.filteredData[row].isFavorite.toggle()
-//                    let index = owner.viewModel.data.firstIndex { todo in
-//                        todo.id == owner.viewModel.filteredData[row].id
-//                    } ?? 0
-//                    owner.viewModel.data[index].isFavorite.toggle()
-//                    owner.items.onNext(owner.viewModel.filteredData)
-//                }
-//                .disposed(by: cell.disposeBag)
+                
+                cell.checkButton.rx.tap.subscribe(with: self) { owner, _ in
+                    checkButtonTap.accept(row)
+                }
+                .disposed(by: cell.disposeBag)
+                cell.favoriteButton.rx.tap.subscribe(with: self) { owner, _ in
+                    favoriteButtonTap.accept(row)
+                }
+                .disposed(by: cell.disposeBag)
+                
             }
             .disposed(by: disposeBag)
         
@@ -87,12 +102,7 @@ class TodoViewController: UIViewController {
                 let ok = UIAlertAction(title: "ok", style: .default) { _ in
                     if let first = alert.textFields?[0] {
                         guard let text = first.text else { return }
-                        owner.viewModel.filteredData[indexPath.row].title = text
-                        let index = owner.viewModel.data.firstIndex { todo in
-                            todo.id == owner.viewModel.filteredData[indexPath.row].id
-                        } ?? 0
-                        owner.viewModel.data[index].title = text
-                        owner.viewModel.items.onNext(owner.viewModel.filteredData)
+                        changeItemName.accept((text, indexPath.row))
                     }
                 }
                 let cancel = UIAlertAction(title: "cancel", style: .cancel)
@@ -104,8 +114,7 @@ class TodoViewController: UIViewController {
         
         tableView.rx.itemDeleted
             .subscribe(with: self) { owner, indexPath in
-                owner.viewModel.filteredData.remove(at: indexPath.row)
-                owner.viewModel.items.onNext(owner.viewModel.filteredData)
+                itemDelete.accept(indexPath.row)
             }
             .disposed(by: disposeBag)
         

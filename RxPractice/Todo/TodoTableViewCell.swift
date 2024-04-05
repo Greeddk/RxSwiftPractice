@@ -50,6 +50,7 @@ class TodoTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(20)
         }
+
     }
     
     func changeDone(done: Bool) {
