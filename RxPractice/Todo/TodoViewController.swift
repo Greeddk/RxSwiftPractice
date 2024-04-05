@@ -34,12 +34,6 @@ class TodoViewController: UIViewController {
     
     let viewModel = TodoViewModel()
     
-    var data = [Todo(title: "비누"), Todo(title: "초콜렛"), Todo(title: "감자"),Todo(title: "비누"), Todo(title: "초콜렛"), Todo(title: "감자"),Todo(title: "비누"), Todo(title: "초콜렛"), Todo(title: "감자"),Todo(title: "비누"), Todo(title: "초콜렛"), Todo(title: "감자"),Todo(title: "비누"), Todo(title: "초콜렛"), Todo(title: "감자"),Todo(title: "비누"), Todo(title: "초콜렛"), Todo(title: "감자"),Todo(title: "비누"), Todo(title: "초콜렛"), Todo(title: "감자")]
-    
-    lazy var items = BehaviorSubject(value: filteredData)
-    
-    var filteredData: [Todo] = []
-    
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -50,38 +44,39 @@ class TodoViewController: UIViewController {
     }
     
     func bind() {
-        items
+        
+        let input = TodoViewModel.Input(todoTitle: textField.rx.text, addButtonTap: addButton.rx.tap, nextPageButtonTap: nextPageButton.rx.tap)
+        
+        let output = viewModel.transform(input: input)
+        
+        output.todoTitle
+            .drive(textField.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.items
             .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: TodoTableViewCell.self)) { (row, element, cell) in
+                
                 cell.title.text = element.title
                 cell.changeDone(done: element.done)
                 cell.changeFavorite(isFavorite: element.isFavorite)
-                cell.checkButton.rx.tap.subscribe(with: self) { owner, _ in
-                    owner.filteredData[row].done.toggle()
-                    let index = owner.data.firstIndex { todo in
-                        todo.id == owner.filteredData[row].id
-                    } ?? 0
-                    owner.data[index].done.toggle()
-                    owner.items.onNext(owner.filteredData)
-                }
-                .disposed(by: cell.disposeBag)
-                cell.favoriteButton.rx.tap.subscribe(with: self) { owner, _ in
-                    owner.filteredData[row].isFavorite.toggle()
-                    let index = owner.data.firstIndex { todo in
-                        todo.id == owner.filteredData[row].id
-                    } ?? 0
-                    owner.data[index].isFavorite.toggle()
-                    owner.items.onNext(owner.filteredData)
-                }
-                .disposed(by: cell.disposeBag)
-            }
-            .disposed(by: disposeBag)
-        
-        textField.rx.text.orEmpty
-            .distinctUntilChanged()
-            .debounce(.milliseconds(100), scheduler: MainScheduler())
-            .bind(with: self) { owner, value in
-                owner.filteredData = value == "" ? owner.data : owner.data.filter { $0.title.lowercased().contains(value.lowercased()) }
-                owner.items.onNext(owner.filteredData)
+//                cell.checkButton.rx.tap.subscribe(with: self) { owner, _ in
+//                    owner.viewModel.filteredData[row].done.toggle()
+//                    let index = owner.viewModel.data.firstIndex { todo in
+//                        todo.id == owner.viewModel.filteredData[row].id
+//                    } ?? 0
+//                    owner.viewModel.data[index].done.toggle()
+//                    owner.items.onNext(owner.viewModel.filteredData)
+//                }
+//                .disposed(by: cell.disposeBag)
+//                cell.favoriteButton.rx.tap.subscribe(with: self) { owner, _ in
+//                    owner.filteredData[row].isFavorite.toggle()
+//                    let index = owner.viewModel.data.firstIndex { todo in
+//                        todo.id == owner.viewModel.filteredData[row].id
+//                    } ?? 0
+//                    owner.viewModel.data[index].isFavorite.toggle()
+//                    owner.items.onNext(owner.viewModel.filteredData)
+//                }
+//                .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
         
@@ -92,12 +87,12 @@ class TodoViewController: UIViewController {
                 let ok = UIAlertAction(title: "ok", style: .default) { _ in
                     if let first = alert.textFields?[0] {
                         guard let text = first.text else { return }
-                        owner.filteredData[indexPath.row].title = text
-                        let index = owner.data.firstIndex { todo in
-                            todo.id == owner.filteredData[indexPath.row].id
+                        owner.viewModel.filteredData[indexPath.row].title = text
+                        let index = owner.viewModel.data.firstIndex { todo in
+                            todo.id == owner.viewModel.filteredData[indexPath.row].id
                         } ?? 0
-                        owner.data[index].title = text
-                        owner.items.onNext(owner.filteredData)
+                        owner.viewModel.data[index].title = text
+                        owner.viewModel.items.onNext(owner.viewModel.filteredData)
                     }
                 }
                 let cancel = UIAlertAction(title: "cancel", style: .cancel)
@@ -109,21 +104,8 @@ class TodoViewController: UIViewController {
         
         tableView.rx.itemDeleted
             .subscribe(with: self) { owner, indexPath in
-                owner.filteredData.remove(at: indexPath.row)
-                owner.items.onNext(owner.filteredData)
-            }
-            .disposed(by: disposeBag)
-        
-        addButton.rx.tap
-            .subscribe(with: self) { owner, _ in
-                guard let title = owner.textField.text else { return }
-                if title.count == 0 {
-                    return
-                }
-                owner.data.append(Todo(title: title))
-                owner.filteredData = owner.data
-                owner.items.onNext(owner.filteredData)
-                owner.textField.text = ""
+                owner.viewModel.filteredData.remove(at: indexPath.row)
+                owner.viewModel.items.onNext(owner.viewModel.filteredData)
             }
             .disposed(by: disposeBag)
         
